@@ -9,11 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h2 class="font-medium leading-tight text-2xl mt-0 mb-2 text-blue-600">My preferred activities </h2>
-                    @if(!isset($activities))
-                        <p class="text-x0.5 font-light leading-relaxed mt-4 mb-2 text-gray-800">You currently have no preferred activities!</p>
-                        <a href="{{route('activities.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add a new preferred activity</a>
-                        @endif
+                    <h2 class="font-medium leading-tight text-2xl mt-0 mb-2 text-blue-600">Your personal page </h2>
+                        <a href="" class="ring-blue-400 ring-1 rounded text-white bg-blue-500 p-2.5 hover:bg-blue-600">Your profile</a>
+                        <a href="{{route('userActivities.index')}}" class="ring-blue-400 ring-1 rounded text-white bg-blue-500 p-2.5 hover:bg-blue-600">My preferred activities</a>
+                    
                  
 
                 </div>
