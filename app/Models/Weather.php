@@ -18,6 +18,7 @@ class Weather implements Jsonable
     public $humidity; // e.g: 93
     public $visibility; // e.g: 10000
     public $wind_speed; // e.g: 3.6
+    public $icon; // e.g: 10d
 
     private static function buildUrl($action = 'weather') {
         return self::API_URL . $action . '?appid=' . config('app.api_open_weather_key');
@@ -44,6 +45,9 @@ class Weather implements Jsonable
         $weather->visibility = $data->visibility;
         $weather->wind_speed = $data->wind->speed;
 
+        $icon = $data->weather[0]->icon;
+        $weather->icon = "http://openweathermap.org/img/wn/$icon@2x.png";
+
         return $weather;
     }
 
@@ -58,7 +62,8 @@ class Weather implements Jsonable
             'pressure' => $this->pressure,
             'humidity' => $this->humidity,
             'visibility' => $this->visibility,
-            'wind_speed' => $this->wind_speed
+            'wind_speed' => $this->wind_speed,
+            'icon' => $this->icon
         ], $options);
     }
 }

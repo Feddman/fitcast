@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="flex justify-start items-center">
-                    <a href="https://flowbite.com" class="flex mr-4">
+                    <a href="" class="flex mr-4">
                         <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="FlowBite Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FitCast</span>
                     </a>
@@ -31,7 +31,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 bg-lightgray">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
