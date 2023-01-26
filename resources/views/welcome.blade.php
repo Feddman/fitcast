@@ -38,46 +38,7 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <form class="bg-white p-6 rounded-lg shadow-md">
-                  <h2 class="text-lg font-medium mb-4">What activity do you want to do?</h2>
-                  <div class="mb-4">
-                    <label class="block text-gray-700 font-medium mb-2" for="">
-                        Activity type:
-                    </label>
-                    <select class="border border-gray-400 p-2 w-full" name="" id="">
-                        <option value="">Please select type</option>
-                        <option value="">Mostly Cardio</option>
-                        <option value="">Mostly Strength</option>
-                    </select>
-                  </div>
-                  <div class="mb-4">
-                    <label class="block text-gray-700 font-medium mb-2" for="">
-                      At what time do you want to start?
-                    </label>
-                    <input
-                      class="border border-gray-400 p-2 w-full"
-                      type="datetime-local"
-                      name="starttime"
-                    >
-                  </div>
-                  <div class="mb-4">
-                    <label class="block text-gray-700 font-medium mb-2" for="message">
-                      What intensity do you want to do?
-                    </label>
-                    <select class="border border-gray-400 p-2 w-full" name="" id="">
-                        <option value="">Please select intensity</option>
-                        <option value="">High intensity</option>
-                        <option value="">Medium intensity</option>
-                        <option value="">Low intensity</option>
-                    </select>
-                  </div>
-                  <button class="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600">
-                    Submit
-                  </button>
-                </form>
-
-            </div>
+            @livewire('forms.search-activity')
         </div>
 
         @livewireScripts
