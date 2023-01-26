@@ -66,19 +66,12 @@
                         weatherResultEl.querySelector('img').src = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
                         weatherResultEl.querySelector('.weather-description').innerHTML = data.description;
 
-                        let icon = data.icon;
-
-                        // TODO: night time images
-                        if(icon.endsWith('n')){
-                            icon = icon.replace('n', 'd');
-                        }
-
                         backgroundImageEl.addEventListener('load', () => {
                             backgroundImageEl.classList.remove('opacity-0');
                             backgroundImageEl.classList.add('opacity-100');
                         });
                         
-                        backgroundImageEl.src = `{{ url('images/') }}/${icon}.jpg`;
+                        backgroundImageEl.src = `{{ url('images/') }}/${data.icon}.jpg`;
                     });
             }
 
