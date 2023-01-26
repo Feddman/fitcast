@@ -60,12 +60,14 @@ class SearchActivity extends Component
             ->where('category', $this->activityType)
             ->where('intensity', $this->intensity)
             ->get();
-        if(count($activities)) {
-            $this->chosenActivity = $activities->random();
-        } else {
 
+        if(!$activities->count()) {
+            // validation error
+            $this->addError('chosenActivity', 'No activities found for this weather condition');
+            return;
         }
-
+        
+        $this->chosenActivity = $activities->random();
     }
 
     public function render()

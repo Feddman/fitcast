@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="flex justify-start items-center">
-                    <a href="{{route('dashboard')}}" class="flex mr-4">
+                    <a href="{{route('welcome')}}" class="flex mr-4">
                         <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="FlowBite Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FitCast</span>
                     </a>

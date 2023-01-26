@@ -65,6 +65,9 @@
             ]
         ]" />
         <div>
+            @error('chosenActivity')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
 
             <x-button.primary type="submit"
                 :disabled="empty($weatherCode) || empty($activityType) || empty($startTime) || empty($intensity)">
