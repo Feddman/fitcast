@@ -32,3 +32,34 @@
         <x-button.primary />
     </form>
 </div>
+<script>
+    (()=>{
+
+        if (!navigator.geolocation) {
+            console.error(`Your browser doesn't support Geolocation`);
+        } else {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        // handle success case
+        function onSuccess(position) {
+            const {
+                latitude,
+                longitude
+            } = position.coords;
+
+            console.log(`Your location: (${latitude},${longitude})`);
+            fetch(`/api/v1/weather/${latitude}/${longitude}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+
+        // handle error case
+        function onError() {
+            console.log(`Failed to get your location!`);
+        }
+    })();
+
+</script>
