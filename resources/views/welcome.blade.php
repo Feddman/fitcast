@@ -38,6 +38,7 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <h1 class="text-gray-300">FitCast!</h1>
+                <h2 class="text-gray-500">The best app ever!</h2>
             </div>
         </div>
     </body>
