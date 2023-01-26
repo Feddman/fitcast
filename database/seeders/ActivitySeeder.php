@@ -232,5 +232,70 @@ class ActivitySeeder extends Seeder
             'average_duration' => 30,
             'equipment_required' => 'skis',
         ]);
+
+        \App\Models\Activity::factory()->create([
+            'name' => 'Tapdancing',
+            'type' => 'outside',
+            'intensity' => 'low',
+            'category' => 'cardio',
+            'calories_burned' => 600,
+            'average_duration' => 30,
+            'equipment_required' => 'tapdanceshoes',
+        ]);
+
+        \App\Models\Activity::factory()->create([
+            'name' => 'Walking',
+            'type' => 'outside',
+            'intensity' => 'low',
+            'category' => 'cardio',
+            'calories_burned' => 600,
+            'average_duration' => 30,
+            'equipment_required' => '',
+        ]);
+        \App\Models\Activity::factory()->create([
+            'name' => 'Jumping jacks',
+            'type' => 'outside',
+            'intensity' => 'cardio',
+            'category' => 'strength',
+            'calories_burned' => 50,
+            'average_duration' => 10,
+            'equipment_required' => '',
+        ]);
+        \App\Models\Activity::factory()->create([
+            'name' => 'Burpees',
+            'type' => 'outside',
+            'intensity' => 'medium',
+            'category' => 'cardio',
+            'calories_burned' => 100,
+            'average_duration' => 20,
+            'equipment_required' => '',
+        ]);
+        \App\Models\Activity::factory()->create([
+            'name' => 'Mindfullness',
+            'type' => 'inside',
+            'intensity' => 'low',
+            'category' => 'cardio',
+            'calories_burned' => 20,
+            'average_duration' => 60,
+            'equipment_required' => '',
+        ]);
+        \App\Models\Activity::factory()->create([
+            'name' => 'Jump squats',
+            'type' => 'outside',
+            'intensity' => 'medium',
+            'category' => 'cardio',
+            'calories_burned' => 300,
+            'average_duration' => 45,
+            'equipment_required' => '',
+        ]);
+        \App\Models\Activity::factory()->create([
+            'name' => 'Programming',
+            'type' => 'inside',
+            'intensity' => 'low',
+            'category' => 'cardio',
+            'calories_burned' => 5,
+            'average_duration' => 90,
+            'equipment_required' => 'laptop',
+        ]);
     }
 }
