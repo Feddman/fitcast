@@ -13,7 +13,7 @@
         ]
         ]" />
 
-        <x-input.date-time labelTitle="At what time do you want to start?"></x-input>
+        <x-input.date-time>At what time do you want to start?</x-input.date-time>
         <div class="flex text-center p-4 weather-result hidden border border-gray-200 rounded-lg shadow ">
             <img src="" alt="">
             <p class="weather-description font-bold "></p>
