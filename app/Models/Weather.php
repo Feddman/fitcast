@@ -19,7 +19,7 @@ class Weather implements Jsonable
     public $humidity; // e.g: 93
     public $visibility; // e.g: 10000
     public $wind_speed; // e.g: 3.6
-    public $icon; // e.g: 10d
+    public $code; // e.g: 10d
     public $dateTime;
     public $fromCacheOriginalTime;
 
@@ -35,7 +35,7 @@ class Weather implements Jsonable
             'humidity' => $this->humidity,
             'visibility' => $this->visibility,
             'wind_speed' => $this->wind_speed,
-            'icon' => $this->icon,
+            'code' => $this->code,
             'dateTime' => $this->dateTime,
             'fromCacheOriginalTime' => $this->fromCacheOriginalTime
         ], $options);
@@ -90,7 +90,7 @@ class Weather implements Jsonable
         $weather->visibility = $data->visibility;
         $weather->wind_speed = $data->wind->speed;
         $weather->dateTime = \Carbon\Carbon::createFromTimestamp($data->dt);
-        $weather->icon = $data->weather[0]->icon;
+        $weather->code = $data->weather[0]->icon;
 
         return $weather;
     }
