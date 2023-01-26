@@ -12,10 +12,6 @@ class SearchActivity extends Component
 
 
 
-    public function query() {
-
-    }
-
     public function render()
     {
         return view('livewire.forms.search-activity');

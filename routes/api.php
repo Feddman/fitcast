@@ -30,7 +30,15 @@ Route::get('/weather/{latitude}/{longitude}/{whenUnixTimestamp?}', function($lat
 });
 
 Route::get('/activity/proposal/{activity}/{intensity}/{starttime}', function($activity, $intensity, $startTime) {
+    // $activity    1 = cardio   2 = strength
+    // $intensity   1 = high      2 = medium   3 = low
 
+
+    return [
+        'activity' => $activity,
+        'intensity' => $intensity,
+        'startTime' => $startTime
+    ];
 });
 
 Route::get('activities', function(){
