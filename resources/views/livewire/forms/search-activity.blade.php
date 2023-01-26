@@ -7,7 +7,6 @@
                 </button>
                 <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
             </div>
-            <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time!</p>
             <div class="flex flex-col gap-4">
 
                 <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time and the weather at that time!</p>
