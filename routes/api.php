@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,8 @@ Route::get('/weather/{latitude}/{longitude}', function($latitude, $longitude) {
         return response()->json(['error' => 'Weather data could not be retrieved. OpenWeatherMap is not responding correctly.'], 500);
 
     return $weather;
+});
+
+Route::get('activities', function(){
+    return Activity::all();
 });
