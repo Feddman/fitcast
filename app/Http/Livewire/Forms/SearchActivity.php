@@ -5,30 +5,62 @@ use Livewire\Component;
 
 class SearchActivity extends Component
 {
-    public $activity;
+    const WEATHER_CODES = [
+        '01d' => 'both',
+        '01n' => 'both',
+        '02d' => 'both',
+        '02n' => 'both',
+        '03d' => 'both',
+        '03n' => 'both',
+        '04d' => 'both',
+        '04n' => 'both',
+        '09d' => 'indoor',
+        '09n' => 'indoor',
+        '10d' => 'indoor',
+        '10n' => 'indoor',
+        '11d' => 'indoor',
+        '11n' => 'indoor',
+        '13d' => 'indoor',
+        '13n' => 'indoor',
+        '50d' => 'both',
+        '50n' => 'both',
+    ];
+    
+    public $activityType;
     public $startTime;
     public $intensity;
+    public $weatherCode;
 
     public function mount()
     {
-        $this->activity = 'running';
-        $this->startTime = now(); //
-        $this->intensity = 1;
+        $this->activityType = '';
+        $this->intensity = '';
+        $this->startTime = now();
     }
 
-    public function hydrate()
+    public function hydrateStartTime($value)
     {
-        $this->startTime = \Carbon\Carbon::parse($this->startTime);
+        $this->startTime = \Carbon\Carbon::createFromFormat('Y-m-d\TH:i', $value);
     }
 
-    public function dehydrate()
+    public function dehydrateStartTime($value)
     {
-        $this->startTime = $this->startTime->format('Y-m-d\TH:i');
+        if($value instanceof \Carbon\Carbon)
+            $this->startTime = $value->format('Y-m-d\TH:i');
+        else
+            $this->startTime = $value;
     }
 
     public function findActivities()
     {
-        dd($this->activity, $this->startTime, $this->intensity);
+        $type = self::WEATHER_CODES[$this->weatherCode];
+        $activities = \App\Models\Activity::where('type', $type)
+            ->where('type', $type)
+            ->where('category', $this->activityType)
+            ->where('intensity', $this->intensity)
+            ->get();
+        
+        dd($activities);
     }
 
     public function render()

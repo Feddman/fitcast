@@ -5,19 +5,20 @@
             <h2 class="text-lg font-medium">Get recommended an activity</h2>
             <p class="text-gray-500">Taking the weather into account</p>
         </div>
-        <x-input.select wire:model="activity" labelTitle="Activity Type" :options="[
+        <input type="hidden" id="weatherCode" wire:model="weatherCode">
+        <x-input.select wire:model="activityType" labelTitle="Activity Type" :options="[
         [
-            'id' => 1,
+            'id' => 'cardio',
             'name' => 'Mostly Cardio'
         ],
         [
-            'id' => 2,
+            'id' => 'strength',
             'name' => 'Mostly Strength'
         ]
         ]" />
 
         <x-input.date-time wire:model="startTime">At what time do you want to start?</x-input.date-time>
-        <div class="grid place-items-center grid-cols-1 grid-rows-1 border border-gray-200 rounded-lg shadow relative h-32">
+        <div wire:ignore class="grid place-items-center grid-cols-1 grid-rows-1 border border-gray-200 rounded-lg shadow relative h-32">
             <p class="row-start-1 col-start-1 italic text-gray-400">
                 Loading weather for selected time...
             </p>
@@ -30,21 +31,25 @@
 
         <x-input.select wire:model="intensity" labelTitle="Intensity" :options="[
             [
-                'id' => 1,
+                'id' => 'high',
                 'name' => 'High Intensity'
             ],
             [
-                'id' => 2,
+                'id' => 'medium',
                 'name' => 'Medium Intensity'
             ],
             [
-                'id' => 3,
+                'id' => 'low',
                 'name' => 'Low Intensity'
             ]
         ]" />
-        <x-button.primary>
-            Find Activities!
-        </x-button.primary>
+        <div>
+            
+            <x-button.primary type="submit"
+                :disabled="empty($weatherCode) || empty($activityType) || empty($startTime) || empty($intensity)">
+                Find Activities!
+            </x-button.primary>
+        </div>
     </form>
     <script>
         (()=>{
@@ -68,7 +73,7 @@
                         console.log(data);
                         weatherResultEl.classList.remove('opacity-0');
                         weatherResultEl.classList.add('opacity-100');
-                        weatherResultEl.querySelector('img').src = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
+                        weatherResultEl.querySelector('img').src = `http://openweathermap.org/img/wn/${data.code}@2x.png`;
                         weatherResultEl.querySelector('.weather-description').innerHTML = data.description;
 
                         let dataState = 'Fresh data';
@@ -77,6 +82,8 @@
                             dataState = `Data fetched at ${new Date(data.fromCacheOriginalTime * 1000).toLocaleTimeString()}`;
                         }
 
+                        document.querySelector('#weatherCode').value = data.code;
+                        document.querySelector('#weatherCode').dispatchEvent(new Event('input'));
                         weatherResultEl.querySelector('.weather-cache-time').innerText = dataState;
 
                         backgroundImageEl.addEventListener('load', () => {
@@ -84,7 +91,7 @@
                             backgroundImageEl.classList.add('opacity-100');
                         });
 
-                        backgroundImageEl.src = `{{ url('images/') }}/${data.icon}.jpg`;
+                        backgroundImageEl.src = `{{ url('images/') }}/${data.code}.jpg`;
                     });
             }
 
@@ -105,7 +112,7 @@
                         .then(data => {
                             console.log(data);
                             document.querySelector('.weather-result').classList.remove('hidden');
-                            document.querySelector('.weather-result img').src = data.icon;
+                            document.querySelector('.weather-result img').src = data.code;
                             document.querySelector('.weather-result .weather-description').innerHTML = data.description;
                         });
                 });
