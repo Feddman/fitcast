@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\UserActivitiesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function(){
-    Route::resource('activities', ActivityController::class);
+    Route::resource('userActivities', UserActivitiesController::class);
 });
 
 require __DIR__.'/auth.php';

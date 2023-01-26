@@ -40,8 +40,14 @@
                     @endauth
                 </div>
             @endif
+            <div class="flex flex-col items-center">
+                <a href="" class="flex mb-4">
+                    <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-16" alt="FlowBite Logo" />
+                    <span class="self-center text-4xl font-semibold whitespace-nowrap text-white">FitCast</span>
+                </a>
+                @livewire('forms.search-activity')
+            </div>
 
-            @livewire('forms.search-activity')
         </div>
 
         @livewireScripts
