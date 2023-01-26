@@ -72,7 +72,7 @@ class Weather implements Jsonable
             return self::getAtCoordinatesNow($latitude, $longitude);
         }
 
-        $whenUnixTimestamp = round($whenUnixTimestamp / 1800) * 1800;
+        $whenUnixTimestamp = round((int)$whenUnixTimestamp / 1800) * 1800;
         return self::getAtCoordinatesAt($latitude, $longitude, $whenUnixTimestamp);
     }
 

@@ -1,10 +1,11 @@
 <div class="mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
-    <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md">
+    <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md"
+        wire:submit.prevent="findActivities">
         <div>
             <h2 class="text-lg font-medium">Get recommended an activity</h2>
             <p class="text-gray-500">Taking the weather into account</p>
         </div>
-        <x-input.select id="activity" labelTitle="Activity Type" :options="[
+        <x-input.select wire:model="activity" labelTitle="Activity Type" :options="[
         [
             'id' => 1,
             'name' => 'Mostly Cardio'
@@ -15,7 +16,7 @@
         ]
         ]" />
 
-        <x-input.date-time>At what time do you want to start?</x-input.date-time>
+        <x-input.date-time wire:model="startTime">At what time do you want to start?</x-input.date-time>
         <div class="grid place-items-center grid-cols-1 grid-rows-1 border border-gray-200 rounded-lg shadow relative h-32">
             <p class="row-start-1 col-start-1 italic text-gray-400">
                 Loading weather for selected time...
@@ -27,7 +28,7 @@
             </div>
         </div>
 
-        <x-input.select id="intensity" labelTitle="Intensity" :options="[
+        <x-input.select wire:model="intensity" labelTitle="Intensity" :options="[
             [
                 'id' => 1,
                 'name' => 'High Intensity'
@@ -120,20 +121,6 @@
             function onError() {
                 console.log(`Failed to get your location!`);
             }
-
-            document.querySelector('.btn-submit').addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('submit');
-                let activity = document.querySelector('#activity').value;
-                let startTime = document.querySelector('.start-time').value;
-                let intensity = document.querySelector('#intensity').value;
-                console.log(activity, startTime, intensity);
-                fetch(`/api/v1/activity/proposal/${activity}/${intensity}/${startTime}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                    });
-            });
         })();
     </script>
 </div>
