@@ -3,7 +3,7 @@
         {{ $labelTitle }}
     </label>
     <select class="border border-gray-400 p-2 w-full rounded" name="" id="">
-          <option value="">Please select</option>
+          <option value="" disabled selected>Select {{ $labelTitle }}</option>
         @foreach($options as $option)
             <option value="{{$option['id']}}">{{$option['name']}}</option>
         @endforeach

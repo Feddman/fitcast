@@ -1,7 +1,10 @@
 <div class="mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
     <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md">
-      <h2 class="text-lg font-medium">What activity do you want to do?</h2>
-        <x-input.select labelTitle="Activity" :options="[
+        <div>
+            <h2 class="text-lg font-medium">Get recommended an activity</h2>
+            <p class="text-gray-500">Taking the weather into account</p>
+        </div>
+        <x-input.select labelTitle="Activity Type" :options="[
         [
             'id' => 1,
             'name' => 'Mostly Cardio'
