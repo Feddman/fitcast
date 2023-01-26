@@ -2,7 +2,7 @@
     @if($chosenActivity)
         <div class="p-6 flex flex-col gap-4 items-center justify-center bg-white shadow-md rounded-lg">
             <div class="w-full flex flex-row justify-center items-center relative">
-                <button wire:click="resetActivity" class="absolute -left-10 -top-10 shadow-lg bg-indigo-500 text-white  sm:py-4 sm:px-6 rounded-lg hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-indigo-500">
+                <button wire:click="resetActivity" class="absolute -left-10 -top-10 shadow-lg bg-indigo-500 text-white py-4 px-6 rounded-lg hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-indigo-500">
                     Back
                 </button>
                 <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
@@ -71,10 +71,14 @@
 
         <x-input.date-time wire:model="startTime">At what time do you want to start?</x-input.date-time>
         <div wire:ignore class="grid place-items-center grid-cols-1 grid-rows-1 border border-gray-200 rounded-lg shadow relative h-32">
-            <p class="row-start-1 col-start-1 italic text-gray-400">
+            <p class="row-start-1 col-start-1 italic text-gray-400 flex flex-col items-center">
+                <svg class="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-50" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-50" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                </svg>
                 Loading weather for selected time...
             </p>
-            <div class="flex flex-col -space-y-10 row-start-1 col-start-1 w-full h-full rounded-lg bg-white gap-4 items-center transition opacity-0 text-center p-4 weather-result">
+            <div class="relative flex flex-col -space-y-10 row-start-1 col-start-1 w-full h-full rounded-lg bg-white gap-4 items-center transition opacity-0 text-center p-4 weather-result">
                 <img src="" alt="" class="h-full animate-hover -pb-2">
                 <p class="weather-description font-bold text-lg pb-2"></p>
                 <span class="weather-cache-time italic text-gray-400 bottom-2 right-4 text-xs absolute"></span>
@@ -98,6 +102,7 @@
         <div>
 
             <x-button.primary type="submit"
+                class="md:-ml-[10%] md:w-[120%]"
                 :disabled="empty($weatherCode) || empty($activityType) || empty($startTime) || empty($intensity)">
                 Find Activities!
             </x-button.primary>

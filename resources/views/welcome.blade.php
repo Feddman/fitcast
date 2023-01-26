@@ -40,7 +40,7 @@
                     @endauth
                 </div>
             @endif
-            <div class="flex flex-col items-center mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
+            <div class="flex flex-col items-center mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose pt-10">
                 <a href="" class="flex mb-4">
                     <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-16" alt="FlowBite Logo" />
                     <span class="self-center text-4xl font-semibold whitespace-nowrap text-white">FitCast</span>
