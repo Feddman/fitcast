@@ -13,7 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('users-activities', function (Blueprint $table) {
+            $table->id();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('activity_id')->references('id')->on('activities')->cascadeOnDelete();
+            $table->timestamps();
+    });
     }
 
     /**
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('users-activities');
     }
 };
