@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire\Forms;
+
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class SearchActivity extends Component
@@ -66,9 +68,21 @@ class SearchActivity extends Component
             ->get();
 
         if(!$activities->count()) {
-            // validation error
             $this->addError('chosenActivity', 'No activities found for this weather condition');
             return;
+        }
+
+        if (Auth::check()) {
+            // filter activities to only contain preferred activities
+            $newActivities = $activities->filter(function ($activity) {
+                return Auth::user()->favoriteActivities->contains($activity);
+            });
+
+            if($newActivities->count()) {
+                $activities = $newActivities;
+            }else{
+                $this->addError('noFavoriteActivities', 'No activities found for this weather condition in your favorites. This is a random activity.');
+            }
         }
         
         $this->chosenActivity = $activities->random();

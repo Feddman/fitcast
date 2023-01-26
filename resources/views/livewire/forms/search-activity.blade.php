@@ -1,11 +1,13 @@
 <div class="w-full">
     @if($chosenActivity)
-        <div class="p-6 flex flex-col items-center justify-center bg-white shadow-md rounded-lg">
-             <button wire:click="resetActivity" class="bg-indigo-500 text-white  sm:py-4 sm:px-6 rounded-lg hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-indigo-500">
-                Back
-            </button>
-            <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
-
+        <div class="p-6 flex flex-col gap-4 items-center justify-center bg-white shadow-md rounded-lg">
+            <div class="w-full flex flex-row justify-center items-center relative">
+                <button wire:click="resetActivity" class="absolute -left-10 -top-10 shadow-lg bg-indigo-500 text-white  sm:py-4 sm:px-6 rounded-lg hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-indigo-500">
+                    Back
+                </button>
+                <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
+            </div>
+            <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time!</p>
             <div class="flex flex-col gap-4">
 
                 <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time and the weather at that time!</p>
@@ -38,6 +40,12 @@
                 </script>
 
             </div>
+            @error('noFavoriteActivities')
+                <div class="italic text-sm text-center">
+                    <p class="text-gray-400">{{ $message }}</p>
+                    <a href="{{ route('userActivities.index') }}" class="block text-blue-500">Add some activities</a>
+                </div>
+            @enderror
         </div>
     @else
     <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md"
