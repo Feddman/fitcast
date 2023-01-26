@@ -1,5 +1,4 @@
-
-  <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+<div class="mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
     <form class="bg-white p-6 rounded-lg shadow-md">
       <h2 class="text-lg font-medium mb-4">What activity do you want to do?</h2>
         <x-input.select labelTitle="Activity" :options="[
@@ -33,9 +32,9 @@
                 'name' => 'Low Intensity'
             ]
         ]" />
-
-
-        <x-button.primary />
+        <x-button.primary>
+            Find Activities!
+        </x-button.primary>
     </form>
     <script>
         (()=>{
@@ -95,7 +94,5 @@
                 console.log(`Failed to get your location!`);
             }
         })();
-
     </script>
-
 </div>

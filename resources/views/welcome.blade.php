@@ -26,7 +26,7 @@
         <div class="absolute overflow-hidden w-full h-full bg-cover bg-gradient-to-b from-gray-100 to-gray-200">
             <img src="" id="backgroundImage" alt="" class="w-full h-full object-cover opacity-0 transition duration-500 blur-xl scale-150">
         </div>
-        <div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
+        <div class="relative flex justify-center min-h-screen items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
