@@ -25,11 +25,12 @@ class SearchActivity extends Component
         '50d' => 'both',
         '50n' => 'both',
     ];
-    
+
     public $activityType;
     public $startTime;
     public $intensity;
     public $weatherCode;
+    public $chosenActivity;
 
     public function mount()
     {
@@ -59,8 +60,12 @@ class SearchActivity extends Component
             ->where('category', $this->activityType)
             ->where('intensity', $this->intensity)
             ->get();
-        
-        dd($activities);
+        if(count($activities)) {
+            $this->chosenActivity = $activities->random();
+        } else {
+
+        }
+
     }
 
     public function render()

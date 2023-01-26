@@ -1,9 +1,30 @@
 <div class="w-full">
+    @if($chosenActivity)
+        <div class="p-6 flex flex-col items-center justify-center bg-white shadow-md rounded-lg">
+            <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
+            <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time!</p>
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-lg">Average duration</h4>
+                    <p>This would take you roughly {{ $chosenActivity->average_duration }} minutes</p>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-lg">Equipment</h4>
+                    <p>{{$chosenActivity->equipment_required}}</p>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-lg">Calories</h4>
+                    <p>You will be burning <b> {{$chosenActivity->calories_burned}} calories </b> when performing at <b> {{ $chosenActivity->intensity }} </b> intensity</p>
+                </div>
+            </div>
+        </div>
+    @else
     <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md"
         wire:submit.prevent="findActivities">
         <div>
             <h2 class="text-lg font-medium">Get recommended an activity</h2>
             <p class="text-gray-500">Taking the weather into account</p>
+
         </div>
         <input type="hidden" id="weatherCode" wire:model="weatherCode">
         <x-input.select wire:model="activityType" labelTitle="Activity Type" :options="[
@@ -44,7 +65,7 @@
             ]
         ]" />
         <div>
-            
+
             <x-button.primary type="submit"
                 :disabled="empty($weatherCode) || empty($activityType) || empty($startTime) || empty($intensity)">
                 Find Activities!
@@ -130,4 +151,6 @@
             }
         })();
     </script>
+    @endif
+
 </div>
