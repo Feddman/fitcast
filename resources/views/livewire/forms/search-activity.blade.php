@@ -1,5 +1,5 @@
 <div class="mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
-    <form class="flex flex-col gap-2 bg-white p-6 rounded-lg shadow-md">
+    <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md">
       <h2 class="text-lg font-medium">What activity do you want to do?</h2>
         <x-input.select labelTitle="Activity" :options="[
         [

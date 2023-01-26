@@ -1,9 +1,9 @@
-<div class="mb-4">
-    <label class="block text-gray-700 font-medium mb-2" for="">
+<div class="flex flex-col gap-2">
+    <label class="block text-gray-700 font-medium" for="">
       {{ $slot }}
     </label>
     <input
-      class="start-time border border-gray-400 p-2 w-full"
+      class="start-time border border-gray-400 p-2 w-full rounded"
       type="datetime-local"
       name="starttime"
       value="{{ now()->format('Y-m-d\TH:i') }}"
