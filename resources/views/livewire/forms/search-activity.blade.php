@@ -39,11 +39,26 @@
     </form>
     <script>
         (()=>{
+            const startTimeEl = document.querySelector('.start-time');
 
             if (!navigator.geolocation) {
                 console.error(`Your browser doesn't support Geolocation`);
             } else {
                 navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            }
+
+            function refreshWeather(latitude, longitude) {
+                let unixTime = Math.floor(new Date(startTimeEl.value).getTime() / 1000);
+                console.log(`Your location: (${latitude},${longitude})`);
+                console.log(unixTime);
+                fetch(`/api/v1/weather/${latitude}/${longitude}/${unixTime}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        document.querySelector('.weather-result').classList.remove('hidden');
+                        document.querySelector('.weather-result img').src = data.icon;
+                        document.querySelector('.weather-result .weather-description').innerHTML = data.description;
+                    });
             }
 
             // handle success case
@@ -53,22 +68,11 @@
                     longitude
                 } = position.coords;
 
-                console.log(`Your location: (${latitude},${longitude})`);
-                document.querySelector('.start-time').addEventListener('change', (e) => {
-                    console.log(e.target.value);
-                    let unixTime = Math.floor(new Date(e.target.value).getTime() / 1000);
-                    console.log(unixTime);
-                    fetch(`/api/v1/weather/${latitude}/${longitude}/${unixTime}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);
-                            document.querySelector('.weather-result').classList.remove('hidden');
-                            document.querySelector('.weather-result img').src = data.icon;
-                            document.querySelector('.weather-result .weather-description').innerHTML = data.description;
-
-                        });
+                startTimeEl.addEventListener('change', (e) => {
+                    refreshWeather(latitude, longitude);
                 });
 
+                refreshWeather(latitude, longitude);
             }
 
             // handle error case
