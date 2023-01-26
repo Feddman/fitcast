@@ -1,6 +1,6 @@
 <div class="mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
-    <form class="bg-white p-6 rounded-lg shadow-md">
-      <h2 class="text-lg font-medium mb-4">What activity do you want to do?</h2>
+    <form class="flex flex-col gap-2 bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-lg font-medium">What activity do you want to do?</h2>
         <x-input.select labelTitle="Activity" :options="[
         [
             'id' => 1,
@@ -13,9 +13,14 @@
         ]" />
 
         <x-input.date-time>At what time do you want to start?</x-input.date-time>
-        <div class="flex text-center p-4 weather-result hidden border border-gray-200 rounded-lg shadow ">
-            <img src="" alt="">
-            <p class="weather-description font-bold "></p>
+        <div class="grid place-items-center grid-cols-1 grid-rows-1 border border-gray-200 rounded-lg shadow relative h-32">
+            <p class="row-start-1 col-start-1 italic text-gray-400">
+                Loading weather for selected time...
+            </p>
+            <div class="flex flex-col -space-y-10 row-start-1 col-start-1 w-full h-full bg-white gap-4 items-center transition opacity-0 text-center p-4 weather-result">
+                <img src="" alt="" class="h-full animate-hover -pb-2">
+                <p class="weather-description font-bold text-lg pb-2"></p>
+            </div>
         </div>
 
         <x-input.select labelTitle="Intensity" :options="[
@@ -40,6 +45,7 @@
         (()=>{
             const startTimeEl = document.querySelector('.start-time');
             const backgroundImageEl = document.querySelector('#backgroundImage');
+            const weatherResultEl = document.querySelector('.weather-result');
 
             if (!navigator.geolocation) {
                 console.error(`Your browser doesn't support Geolocation`);
@@ -55,9 +61,10 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        document.querySelector('.weather-result').classList.remove('hidden');
-                        document.querySelector('.weather-result img').src = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
-                        document.querySelector('.weather-result .weather-description').innerHTML = data.description;
+                        weatherResultEl.classList.remove('opacity-0');
+                        weatherResultEl.classList.add('opacity-100');
+                        weatherResultEl.querySelector('img').src = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
+                        weatherResultEl.querySelector('.weather-description').innerHTML = data.description;
 
                         let icon = data.icon;
 

@@ -13,6 +13,15 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                'hover': {
+                    '0%, 100%': { transform: 'translateY(-2px)' },
+                    '50%': { transform: 'translateY(2px)' },
+                }
+            },
+            animation: {
+                'hover': 'hover 5s ease-in-out infinite',
+            }
         },
     },
 
