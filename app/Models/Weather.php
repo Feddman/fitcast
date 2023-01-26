@@ -64,9 +64,7 @@ class Weather implements Jsonable
         $weather->visibility = $data->visibility;
         $weather->wind_speed = $data->wind->speed;
         $weather->dateTime = \Carbon\Carbon::createFromTimestamp($data->dt);
-
-        $icon = $data->weather[0]->icon;
-        $weather->icon = "http://openweathermap.org/img/wn/$icon@2x.png";
+        $weather->icon = $data->weather[0]->icon;
 
         return $weather;
     }
