@@ -48,7 +48,7 @@ class UserActivitiesController extends Controller
         $userActivity->user_id = $request->user_id;
         $userActivity->save();
 
-        return redirect('dashboard/userActivities');
+        return redirect('dashboard/userActivities')->with('status', 'Activity added');
         
     }
 
