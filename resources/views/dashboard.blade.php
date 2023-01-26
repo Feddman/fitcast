@@ -13,9 +13,7 @@
                     @if(!isset($activities))
                         <p class="text-x0.5 font-light leading-relaxed mt-4 mb-2 text-gray-800">You currently have no preferred activities!</p>
                         <a href="{{route('activities.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add a new preferred activity</a>
-                        @endif
-                 
-
+                    @endif
                 </div>
             </div>
         </div>

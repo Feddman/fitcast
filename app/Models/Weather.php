@@ -56,8 +56,9 @@ class Weather implements Jsonable
             if($response === false)
                 return null;
             
-            Cache::put($cacheKey, $response, 60);
-            Cache::put($cacheKey . '_time', time(), 60);
+            $cacheTime = \DateInterval::createFromDateString('1 hour');
+            Cache::put($cacheKey, $response, $cacheTime);
+            Cache::put($cacheKey . '_time', time(), $cacheTime);
         }
 
         return [
@@ -71,9 +72,7 @@ class Weather implements Jsonable
             return self::getAtCoordinatesNow($latitude, $longitude);
         }
 
-        // Round to the nearest half hour
         $whenUnixTimestamp = round($whenUnixTimestamp / 1800) * 1800;
-
         return self::getAtCoordinatesAt($latitude, $longitude, $whenUnixTimestamp);
     }
 
