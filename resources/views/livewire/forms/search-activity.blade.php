@@ -20,7 +20,7 @@
             <p class="row-start-1 col-start-1 italic text-gray-400">
                 Loading weather for selected time...
             </p>
-            <div class="flex flex-col -space-y-10 row-start-1 col-start-1 w-full h-full bg-white gap-4 items-center transition opacity-0 text-center p-4 weather-result">
+            <div class="flex flex-col -space-y-10 row-start-1 col-start-1 w-full h-full rounded-lg bg-white gap-4 items-center transition opacity-0 text-center p-4 weather-result">
                 <img src="" alt="" class="h-full animate-hover -pb-2">
                 <p class="weather-description font-bold text-lg pb-2"></p>
             </div>
