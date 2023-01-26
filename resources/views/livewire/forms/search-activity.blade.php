@@ -1,9 +1,14 @@
 <div class="w-full">
     @if($chosenActivity)
         <div class="p-6 flex flex-col items-center justify-center bg-white shadow-md rounded-lg">
+             <button wire:click="resetActivity" class="bg-indigo-500 text-white  sm:py-4 sm:px-6 rounded-lg hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-indigo-500">
+                Back
+            </button>
             <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
-            <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time!</p>
+
             <div class="flex flex-col gap-4">
+
+                <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time and the weather at that time!</p>
                 <div class="flex flex-col gap-4">
                     <h4 class="font-bold text-lg">Average duration</h4>
                     <p>This would take you roughly {{ $chosenActivity->average_duration }} minutes</p>
