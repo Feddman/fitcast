@@ -81,7 +81,7 @@ class SearchActivity extends Component
             if($newActivities->count()) {
                 $activities = $newActivities;
             }else{
-                $this->addError('noFavoriteActivities', 'No activities found for this weather condition in your favorites. Here\'s a random one.');
+                $this->addError('noFavoriteActivities', 'No activities found for this weather condition in your favorites. This is a random activity.');
             }
         }
         

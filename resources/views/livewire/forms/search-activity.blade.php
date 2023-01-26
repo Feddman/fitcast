@@ -7,12 +7,6 @@
                 </button>
                 <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
             </div>
-            @error('noFavoriteActivities')
-                <div class="italic text-sm">
-                    <p class="text-gray-400">{{ $message }}</p>
-                    <a href="{{ route('userActivities.index') }}" class="text-blue-500">Add some activities</a>
-                </div>
-            @enderror
             <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time!</p>
             <div class="flex flex-col gap-4">
 
@@ -30,6 +24,12 @@
                     <p>You will be burning <b> {{$chosenActivity->calories_burned}} calories </b> when performing at <b> {{ $chosenActivity->intensity }} </b> intensity</p>
                 </div>
             </div>
+            @error('noFavoriteActivities')
+                <div class="italic text-sm text-center">
+                    <p class="text-gray-400">{{ $message }}</p>
+                    <a href="{{ route('userActivities.index') }}" class="block text-blue-500">Add some activities</a>
+                </div>
+            @enderror
         </div>
     @else
     <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md"
