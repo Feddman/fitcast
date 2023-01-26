@@ -21,6 +21,22 @@
                     <h4 class="font-bold text-lg">Calories</h4>
                     <p>You will be burning <b> {{$chosenActivity->calories_burned}} calories </b> when performing at <b> {{ $chosenActivity->intensity }} </b> intensity</p>
                 </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-lg">Your Quote of the day:</h4>
+                    <p id="quote" class="text-gray-400 text-2xl text-center italic -rotate-2"></p>
+                    <p class='text-gray-600 text-2xl text-center font-bold'>Good luck, you can do it!</p>
+                </div>
+
+                <script>
+                    fetch('https://api.quotable.io/random')
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('quote').innerHTML = '"' + data.content + '"';
+                        })
+
+                </script>
+
             </div>
         </div>
     @else
@@ -70,9 +86,6 @@
             ]
         ]" />
         <div>
-            @error('chosenActivity')
-                <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
 
             <x-button.primary type="submit"
                 :disabled="empty($weatherCode) || empty($activityType) || empty($startTime) || empty($intensity)">
@@ -157,6 +170,8 @@
             function onError() {
                 console.log(`Failed to get your location!`);
             }
+
+
         })();
     </script>
     @endif
