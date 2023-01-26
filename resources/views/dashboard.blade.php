@@ -17,10 +17,10 @@
                 <div class="p-6 text-gray-900">
                     <h2 class="font-medium leading-tight text-2xl mt-0 mb-2 text-blue-600 ">Your personal page </h2>
                     <div class="dashboard-items p-5">
-                        <a href="" class="ring-blue-400 ring-1 rounded text-white bg-blue-500 p-2.5 hover:bg-blue-600">Your profile</a>
+                        <a href="{{route('profile.edit')}}" class="ring-blue-400 ring-1 rounded text-white bg-blue-500 p-2.5 hover:bg-blue-600">Your profile</a>
                         <a href="{{route('userActivities.index')}}" class="ring-blue-400 ring-1 rounded text-white bg-blue-500 p-2.5 hover:bg-blue-600">My preferred activities</a>
                     </div>
-                 
+
 
                 </div>
             </div>
