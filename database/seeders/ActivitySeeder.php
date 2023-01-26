@@ -252,6 +252,7 @@ class ActivitySeeder extends Seeder
             'average_duration' => 30,
             'equipment_required' => '',
         ]);
+        
         \App\Models\Activity::factory()->create([
             'name' => 'Jumping jacks',
             'type' => 'outside',
@@ -270,6 +271,7 @@ class ActivitySeeder extends Seeder
             'average_duration' => 20,
             'equipment_required' => '',
         ]);
+
         \App\Models\Activity::factory()->create([
             'name' => 'Mindfullness',
             'type' => 'inside',
@@ -279,6 +281,7 @@ class ActivitySeeder extends Seeder
             'average_duration' => 60,
             'equipment_required' => '',
         ]);
+
         \App\Models\Activity::factory()->create([
             'name' => 'Jump squats',
             'type' => 'outside',
@@ -288,6 +291,7 @@ class ActivitySeeder extends Seeder
             'average_duration' => 45,
             'equipment_required' => '',
         ]);
+
         \App\Models\Activity::factory()->create([
             'name' => 'Programming',
             'type' => 'inside',

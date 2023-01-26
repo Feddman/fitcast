@@ -22,9 +22,6 @@
                     <h4 class="font-bold text-lg">Calories</h4>
                     <p>You will be burning <b> {{$chosenActivity->calories_burned}} calories </b> when performing at <b> {{ $chosenActivity->intensity }} </b> intensity</p>
                 </div>
-
-
-
             </div>
 
             @error('noFavoriteActivities')
@@ -99,7 +96,11 @@
             ]
         ]" />
         <div>
-
+            @error('chosenActivity')
+                <div class="italic text-sm text-center mb-5">
+                    <p class="text-red-500">{{ $message }}</p>
+                </div>
+            @enderror
             <x-button.primary type="submit"
                 class="md:-ml-[10%] md:w-[120%]"
                 :disabled="empty($weatherCode) || empty($activityType) || empty($startTime) || empty($intensity)">
@@ -129,6 +130,7 @@
                         console.log(data);
                         weatherResultEl.classList.remove('opacity-0');
                         weatherResultEl.classList.add('opacity-100');
+                        
                         weatherResultEl.querySelector('img').src = `http://openweathermap.org/img/wn/${data.code}@2x.png`;
                         weatherResultEl.querySelector('.weather-description').innerHTML = data.description;
 
@@ -137,7 +139,7 @@
                         if (data.fromCacheOriginalTime) {
                             dataState = `Data fetched at ${new Date(data.fromCacheOriginalTime * 1000).toLocaleTimeString()}`;
                         }
-
+                        
                         document.querySelector('#weatherCode').value = data.code;
                         document.querySelector('#weatherCode').dispatchEvent(new Event('input'));
                         weatherResultEl.querySelector('.weather-cache-time').innerText = dataState;
