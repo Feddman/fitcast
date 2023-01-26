@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use \Illuminate\Contracts\Support\Jsonable;
+use \Illuminate\Support\Facades\Cache;
 
 class Weather implements Jsonable
 {
@@ -20,6 +21,7 @@ class Weather implements Jsonable
     public $wind_speed; // e.g: 3.6
     public $icon; // e.g: 10d
     public $dateTime;
+    public $fromCacheOriginalTime;
 
     public function toJson($options = 0) {
         return json_encode([
@@ -34,7 +36,8 @@ class Weather implements Jsonable
             'visibility' => $this->visibility,
             'wind_speed' => $this->wind_speed,
             'icon' => $this->icon,
-            'dateTime' => $this->dateTime
+            'dateTime' => $this->dateTime,
+            'fromCacheOriginalTime' => $this->fromCacheOriginalTime
         ], $options);
     }
 
@@ -42,11 +45,34 @@ class Weather implements Jsonable
         return self::API_URL . $action . '?appid=' . config('app.api_open_weather_key');
     }
 
+    private static function loadFromCacheOrApi($url) {
+        $cacheKey = 'weather_' . md5($url);
+        $response = Cache::get($cacheKey, null);
+        $cachedAt = $response !== null ? Cache::get($cacheKey . '_time', null) : null;
+
+        if($response === null) {
+            $response = @file_get_contents($url);
+
+            if($response === false)
+                return null;
+            
+            $cacheTime = \DateInterval::createFromDateString('1 hour');
+            Cache::put($cacheKey, $response, $cacheTime);
+            Cache::put($cacheKey . '_time', time(), $cacheTime);
+        }
+
+        return [
+            'response' => $response,
+            'cachedAt' => $cachedAt
+        ];
+    }
+
     public static function getAtCoordinates($latitude, $longitude, $whenUnixTimestamp = null) {
         if($whenUnixTimestamp === null) {
             return self::getAtCoordinatesNow($latitude, $longitude);
         }
 
+        $whenUnixTimestamp = round((int)$whenUnixTimestamp / 1800) * 1800;
         return self::getAtCoordinatesAt($latitude, $longitude, $whenUnixTimestamp);
     }
 
@@ -64,33 +90,33 @@ class Weather implements Jsonable
         $weather->visibility = $data->visibility;
         $weather->wind_speed = $data->wind->speed;
         $weather->dateTime = \Carbon\Carbon::createFromTimestamp($data->dt);
-
-        $icon = $data->weather[0]->icon;
-        $weather->icon = "http://openweathermap.org/img/wn/$icon@2x.png";
+        $weather->icon = $data->weather[0]->icon;
 
         return $weather;
     }
 
     private static function getAtCoordinatesNow($latitude, $longitude) {
         $url = self::buildUrl() . '&lat=' . $latitude . '&lon=' . $longitude;
-        $response = @file_get_contents($url);
+        $dataResult = self::loadFromCacheOrApi($url);
 
-        if($response === false)
+        if($dataResult['response'] === null)
             return null;
         
-        $data = json_decode($response);
+        $data = json_decode($dataResult['response']);
 
-        return self::weatherFromApiData($data);
+        $weather = self::weatherFromApiData($data);
+        $weather->fromCacheOriginalTime = $dataResult['cachedAt'];
+        return $weather;
     }
 
     private static function getAtCoordinatesAt($latitude, $longitude, $whenUnixTimestamp) {
         $url = self::buildUrl('forecast') . '&lat=' . $latitude . '&lon=' . $longitude;
-        $response = @file_get_contents($url);
+        $dataResult = self::loadFromCacheOrApi($url);
 
-        if($response === false)
+        if($dataResult['response'] === null)
             return null;
         
-        $data = json_decode($response);
+        $data = json_decode($dataResult['response']);
 
         $weather = null;
 
@@ -101,6 +127,9 @@ class Weather implements Jsonable
             }
         }
 
+        if($weather !== null)
+            $weather->fromCacheOriginalTime = $dataResult['cachedAt'];
+            
         return $weather;
     }
 }
