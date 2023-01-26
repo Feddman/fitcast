@@ -29,6 +29,10 @@ Route::get('/weather/{latitude}/{longitude}/{whenUnixTimestamp?}', function($lat
     return $weather;
 });
 
+Route::get('/activity/proposal/{activity}/{intensity}/{starttime}', function($activity, $intensity, $startTime) {
+
+});
+
 Route::get('activities', function(){
     return Activity::all();
 });

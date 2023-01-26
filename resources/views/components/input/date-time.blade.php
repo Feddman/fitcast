@@ -6,5 +6,6 @@
       class="start-time border border-gray-400 p-2 w-full"
       type="datetime-local"
       name="starttime"
+      {{ $attributes }}
     >
 </div>
