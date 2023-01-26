@@ -255,7 +255,7 @@ class ActivitySeeder extends Seeder
         \App\Models\Activity::factory()->create([
             'name' => 'Jumping jacks',
             'type' => 'outside',
-            'intensity' => 'cardio',
+            'intensity' => 'medium',
             'category' => 'strength',
             'calories_burned' => 50,
             'average_duration' => 10,
