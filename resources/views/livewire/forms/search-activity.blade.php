@@ -1,7 +1,13 @@
 <div class="w-full">
     @if($chosenActivity)
-        <div class="p-6 flex flex-col items-center justify-center bg-white shadow-md rounded-lg">
-            <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
+        <div class="p-6 flex flex-col gap-4 items-center justify-center bg-white shadow-md rounded-lg">
+            <div class="text-center">
+                <h3 class="font-bold text-2xl">How about {{$chosenActivity->name}}?</h3>
+                @error('noFavoriteActivities')
+                    <p class="text-gray-400 italic text-sm">{{ $message }}</p>
+                    <a href="{{ route('userActivities.index') }}" class="text-blue-500 italic text-sm">Add some activities</a>
+                @enderror
+            </div>
             <p>This is an activity for {{ $chosenActivity->type }} {{$chosenActivity->type == 'both' ? 'inside and outside' : ''}} so that would be great for your chosen time!</p>
             <div class="flex flex-col gap-4">
                 <div class="flex flex-col gap-4">
