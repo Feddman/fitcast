@@ -1,4 +1,4 @@
-<div class="mx-4 sm:mx-6 lg:mx-8 w-full max-w-prose">
+<div class="w-full">
     <form class="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md"
         wire:submit.prevent="findActivities">
         <div>
@@ -25,7 +25,7 @@
             <div class="flex flex-col -space-y-10 row-start-1 col-start-1 w-full h-full rounded-lg bg-white gap-4 items-center transition opacity-0 text-center p-4 weather-result">
                 <img src="" alt="" class="h-full animate-hover -pb-2">
                 <p class="weather-description font-bold text-lg pb-2"></p>
-                <span class="weather-cache-time italic text-gray-400 bottom-2 right-4 text-sm absolute"></span>
+                <span class="weather-cache-time italic text-gray-400 bottom-2 right-4 text-xs absolute"></span>
             </div>
         </div>
 

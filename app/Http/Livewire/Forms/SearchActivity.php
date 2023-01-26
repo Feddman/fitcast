@@ -33,8 +33,8 @@ class SearchActivity extends Component
 
     public function mount()
     {
-        $this->activityType = '';
-        $this->intensity = '';
+        $this->activityType = 'cardio';
+        $this->intensity = 'high';
         $this->startTime = now();
     }
 
