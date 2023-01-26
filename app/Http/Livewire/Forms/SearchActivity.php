@@ -54,6 +54,10 @@ class SearchActivity extends Component
             $this->startTime = $value;
     }
 
+    public function resetActivity() {
+        $this->chosenActivity = null;
+    }
+
     public function findActivities()
     {
         $type = self::WEATHER_CODES[$this->weatherCode];
