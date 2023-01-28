@@ -61,11 +61,14 @@ class SearchActivity extends Component
     public function findActivities()
     {
         $type = self::WEATHER_CODES[$this->weatherCode];
-        $activities = \App\Models\Activity::where('type', $type)
-            ->where('type', $type)
-            ->where('category', $this->activityType)
-            ->where('intensity', $this->intensity)
-            ->get();
+        $query = \App\Models\Activity::where('category', $this->activityType)
+            ->where('intensity', $this->intensity);
+
+        if ($type !== 'both') {
+            $query->where('type', $type);
+        }
+
+        $activities = $query->get();
 
         if(!$activities->count()) {
             $this->addError('chosenActivity', 'No activities found for this weather condition');
