@@ -35,7 +35,7 @@
             @enderror
         </div>
 
-    <div class="flex flex-col gap-4 mt-4">
+    <div class="flex flex-col gap-4 my-8">
         <p id="quote" class="text-gray-200 text-2xl text-center italic -rotate-2"></p>
         <p class='text-gray-200 text-2xl text-center font-bold'>Good luck, you can do it!</p>
     </div>
